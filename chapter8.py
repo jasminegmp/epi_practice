@@ -2,14 +2,11 @@ class Stack:
 	def __init__(self,data=0):
 		self.stack = []
 	def push(self, data=0):
-		stack = self.stack
-		return stack.append(data)
+		return self.stack.append(data)
 	def pop(self):
-		stack = self.stack
 		return self.stack.pop()
 	def is_empty(self):
-		stack = self.stack
-		return (len(stack) == 0)
+		return (len(self.stack) == 0)
 	def print(self):
 		print(self.stack)
 
@@ -23,12 +20,65 @@ class Stack:
 				stack_max = stack[i+1]
 		return stack_max
 
-s = Stack()
-s.push(10)
-s.push(2)
-s.push(1)
-s.push(1)
-s.push(20)
-s.push(1)
-s.print()
-print(s.find_max())
+def test_8p1():
+	s = Stack()
+	s.push(10)
+	s.push(2)
+	s.push(1)
+	s.push(1)
+	s.push(20)
+	s.push(1)
+	s.print()
+	print(s.find_max())
+
+class Queue:
+	def __init__(self):
+		self.queue = []
+	def enqueue(self,data=0):
+		return self.queue.append(data)
+	def dequeue(self):
+		return self.queue.pop(0)
+	def is_empty(self):
+		return (len(self.queue) == 0)
+	def print(self):
+		print(self.queue)
+
+class CircularQueue:
+	def __init__(self, max_capacity):
+		self.queue = [None]*max_capacity
+		self.max_capacity = max_capacity
+		self.start = 0
+		self.end = 0
+	def enqueue(self,data=0):
+		print("@", print(self.queue))
+		if (self.end - self.start) == self.max_capacity:
+			print("!", print(self.queue))
+			self.dequeue()
+			print("#", self.queue)
+		self.end = self.end + 1
+		return self.queue.append(data)
+	def dequeue(self):
+		pop_index = self.start
+		self.start = self.start + 1
+		return self.queue.pop(pop_index)
+	def is_empty(self):
+		return (len(self.queue) == 0)
+	def print(self):
+		print(self.queue)
+
+def test_8p7():
+	w = CircularQueue(4)
+	w.enqueue(2)
+	w.enqueue(4)
+	w.enqueue(7)
+	w.enqueue(8)
+	w.enqueue(1)
+	w.print()
+	w.dequeue()
+	w.print()
+	print(w.is_empty())
+
+#test_8p1()
+test_8p7()
+
+
