@@ -52,15 +52,20 @@ class CircularQueue:
 	def enqueue(self,data=0):
 		print("@", print(self.queue))
 		if (self.end - self.start) == self.max_capacity:
+			self.end = 0
 			print("!", print(self.queue))
-			self.dequeue()
-			print("#", self.queue)
+		if not self.is_empty:
+			if (self.start == self.end):
+				self.start = self.start + 1
+		self.queue[self.end] = data
 		self.end = self.end + 1
-		return self.queue.append(data)
+		return self
 	def dequeue(self):
-		pop_index = self.start
-		self.start = self.start + 1
-		return self.queue.pop(pop_index)
+		if self.start > self.max_capacity - 1:
+			self.start = 0
+		else:
+			self.end = self.max_capacity - 1
+		return self.queue.pop(self.end)
 	def is_empty(self):
 		return (len(self.queue) == 0)
 	def print(self):
@@ -73,6 +78,7 @@ def test_8p7():
 	w.enqueue(7)
 	w.enqueue(8)
 	w.enqueue(1)
+	w.enqueue(6)
 	w.print()
 	w.dequeue()
 	w.print()
