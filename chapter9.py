@@ -99,7 +99,6 @@ def get_right_height(tree):
 	else:
 		return 0
 
-
 # Problem 9.1 check if tree is balanced
 def height_balanced(tree, height, root):
 	# Do post order tree traversal
@@ -123,7 +122,6 @@ def height_balanced(tree, height, root):
 		elif (tree.get_left_child() != None) and (tree.get_right_child() == None):
 			return False
 	return True
-
 
 root = 200
 tree = BinaryTreeNode(root)
